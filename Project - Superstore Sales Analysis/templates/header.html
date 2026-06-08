@@ -1,14 +1,120 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
+<head>
+    <title>Business Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            z-index: 1000;
+        }
+        .header-title {
+            font-size: 45px;
+            font-weight: bold;
+            margin: 0;
+            color: rgb(255, 255, 255);
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+        .filters {
+            margin-top: 10px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .filters label {
+            font-size: 14px;
+            margin-right: 5px;
+        }
+        .filters select, .filters input {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .filters button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .apply-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .reset-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .content {
+            margin-top: 120px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-title" style="margin: 10px 30px;">Business Dashboard</div>
+        <form method="get" action="/" class="filters">
+            <!-- Start/End Date -->
+            <div style="margin: 10px 30px;">
+                <label for="start-date">Start Date:</label>
+                <input type="date" id="start-date" name="start-date" value="{{conditions.start_date or min_date}}">
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date" name="end-date" value="{{conditions.end_date or max_date}}">
+            </div>
 
-        </title>
-        <style>
-            
-        </style>
-    </head>
-    <body>
+            <!-- Region -->
+            <div>
+                <label for="region">Region:</label>
+                <select id="region" name="region">
+                    <option value="">All</option>
+                    {% for r in regions %}
+                        <option value="{{ r }}"" {% if conditions.Region == r %}selected{% endif %}>{{r}}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-    </body>
+            <!-- Category -->
+            <div>
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="">All</option>
+                    {% for c in categories %}
+                        <option value="{{ c }}" {% if conditions.Category == c %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Buttons -->
+            <div>
+                <button type="submit" class="apply-btn">Apply</button>
+                <button type="button" class="reset-btn" onclick="resetFilters()">Reset</button>
+            </div>
+        </form>
+    </header>
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script>
+    function resetFilters() {
+        document.getElementById("start-date").value = "{{ min_date }}";
+        document.getElementById("end-date").value = "{{ max_date }}";
+        document.getElementById("region").value = "";
+        document.getElementById("category").value = "";
+        document.forms[0].submit();
+    }
+    </script>
+</body>
 </html>

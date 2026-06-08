@@ -1,0 +1,52 @@
+{% extends "header.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            flex: 1;
+            border: 1px solid #ffffff;
+            padding: 10px;
+            background-color: rgba(230, 230, 230, 0.2);
+            margin: 10px;
+            align-items: center;
+        }
+        .title {
+            text-align: left;
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: rgb(2, 2, 80);
+        }
+    </style>
+</head>
+<body>
+    <div class="column" style="width: 100%; max-width: 1825px; margin: auto;">
+        <h1 class="title" style="padding: 0px 10px;">KPI Dashboard</h1>
+        <div style="margin: auto; padding: 10px;">
+            {{ kpi|safe }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <h1 class="title" style="padding: 0px 10px;">Sales by Year</h1>
+            <div style="width: 100%; max-width: 875px; margin: auto;">
+                {{ sales|safe }}
+            </div>
+        </div>
+
+        <div class="column">
+            <h1 class="title" style="padding: 0px 10px;">Customer Segment</h1>
+            <div style="width: 100%; max-width: 875px; margin: auto;">
+                {{customer_segment|safe}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
