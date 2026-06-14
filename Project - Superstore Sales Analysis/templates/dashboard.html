@@ -1,52 +1,66 @@
-{% extends "header.html" %}
+{% extends "base.html" %}
 {% block content %}
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        .row {
-            display: flex;
-            justify-content: space-between;
-        }
-        .column {
-            flex: 1;
-            border: 1px solid #ffffff;
-            padding: 10px;
-            background-color: rgba(230, 230, 230, 0.2);
-            margin: 10px;
-            align-items: center;
-        }
-        .title {
-            text-align: left;
-            font-size: 25px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-            color: rgb(2, 2, 80);
-        }
-    </style>
-</head>
-<body>
-    <div class="column" style="width: 100%; max-width: 1825px; margin: auto;">
-        <h1 class="title" style="padding: 0px 10px;">KPI Dashboard</h1>
-        <div style="margin: auto; padding: 10px;">
+<div id="dashboard-content">
+    <div class="column">
+        <h1 class="title" style="margin: 10px;">KPIs</h1>
+        <div id="kpis" class="fig_plate">
             {{ kpi|safe }}
         </div>
     </div>
-    <div class="row">
-        <div class="column">
-            <h1 class="title" style="padding: 0px 10px;">Sales by Year</h1>
-            <div style="width: 100%; max-width: 875px; margin: auto;">
+    <div id="sales_analysis" class="column">
+        <h1 class="title" style="margin: 10px;">Sales, Profit Analysis</h1>
+        <div class="row">
+            <div class="fig_plate">
                 {{ sales|safe }}
             </div>
+            <div class="fig_plate">
+                {{profit_margin|safe}}
+            </div>
         </div>
-
-        <div class="column">
-            <h1 class="title" style="padding: 0px 10px;">Customer Segment</h1>
-            <div style="width: 100%; max-width: 875px; margin: auto;">
-                {{customer_segment|safe}}
+        <div class="row">
+            <div class="fig_plate">
+                {{ discount_impact_mean|safe }}
+            </div>
+            <div class="fig_plate">
+                {{discount_impact_sum|safe}}
             </div>
         </div>
     </div>
-</body>
-</html>
+    <div id="customer_analysis" class="column">
+        <h1 class="title" style="margin: 10px;">Customer Analysis</h1>
+        <div class="row">
+            <div class="fig_plate">
+                {{ customer_segment|safe }}
+            </div>
+            <div class="fig_plate">
+                {{order_value|safe}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="fig_plate">
+                {{rfm_potential_customer|safe}}
+            </div>
+            <div class="fig_plate">
+                {{rfm_risky_customer|safe}}
+            </div>
+        </div>
+    </div>
+        <div id="category" class="column">
+        <h1 class="title" style="margin: 10px;">Product Category Analysis</h1>
+        <div class="row">
+            <div class="fig_plate">
+                {{top_subcat_sales|safe }}
+            </div>
+            <div class="fig_plate">
+                {{top_subcat_profit|safe}}
+            </div>
+        </div>
+        <div id="discount" class="fig_plate">
+            {{discount_impact_cat|safe}}
+        </div>
+        <div id="top_items" class="fig_plate">
+            {{top_items|safe}}
+        </div>
+    </div>
+</div>
 {% endblock %}

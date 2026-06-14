@@ -1,0 +1,16 @@
+# Bỏ qua môi trường ảo
+venv/
+
+# Bỏ qua file tạm và cache
+__pycache__/
+*.pyc
+
+# Bỏ qua file cấu hình nhạy cảm
+.env
+
+# Bỏ qua dữ liệu gốc và xử lý (nếu không muốn commit)
+data/raw/
+data/processed/
+
+# Bỏ qua log
+*.log

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Business Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    <header>
+        <div class="header-title" style="margin: 10px 30px;">Business Dashboard</div>
+        <div>
+                <form method="get" action="/" class="filters">
+                    <!-- Start/End Date -->
+                    <div style="margin: 10px 30px;">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" id="start-date" name="start-date" value="{{start_date or min_date}}">
+                        <label for="end-date">End Date:</label>
+                        <input type="date" id="end-date" name="end-date" value="{{end_date or max_date}}">
+                    </div>
+
+                    <!-- Region -->
+                    <div>
+                        <label for="region">Region:</label>
+                        <select id="region" name="region">
+                            <option value="" {% if not region %}selected{% endif %}>All</option>
+                            {% for r in regions %}
+                                <option value="{{r}}" {% if region == r %}selected{% endif %}>{{r}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Segment -->
+                    <div>
+                        <label for="segment">Segment:</label>
+                        <select id="segment" name="segment">
+                            <option value="" {% if not segment %}selected{% endif %}>All</option>
+                            {% for s in segments %}
+                                <option value="{{s}}" {% if segment == s %}selected{% endif %}>{{s}}</option>
+                            {% endfor %}
+                            </select>
+                    </div>
+                    
+                    <!-- Category -->
+                    <div>
+                        <label for="category">Category:</label>
+                        <select id="category" name="category">
+                            <option value="" {% if not category %}selected{% endif %}>All</option>
+                            {% for c in categories %}
+                                <option value="{{c}}" {% if category == c %}selected{% endif %}>{{c}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div>
+                        <button type="submit" class="apply-btn">Apply</button>
+                        <button type="button" class="reset-btn" onclick="resetFilters()">Reset</button>
+                        <button type="submit" class="export-btn" onclick="window.print()">Print</button>
+                    </div>
+            </form>
+        </div>
+    </header>
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>

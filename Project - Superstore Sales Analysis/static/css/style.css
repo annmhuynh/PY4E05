@@ -1,0 +1,194 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    z-index: 1000;
+}
+.header-title {
+    font-size: 45px;
+    font-weight: bold;
+    margin: 0;
+    color: rgb(255, 255, 255);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.filters {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.filters label {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.filters select, .filters input {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.filters button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.apply-btn {
+    background-color: #61b374;
+    color: white;
+}
+
+.reset-btn {
+    background-color: #d4848c;
+    color: white;
+}
+
+.close-btn {
+    background-color: #181f09;
+    color: white;
+    float: right;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.export-btn {
+    background-color: #7bc1ff;
+    color: white;
+}
+
+.data-btn {
+    background-color: #181f09;
+    color: white;
+}
+
+.content {
+    margin-top: 120px;
+    padding: 20px;
+}
+
+.menu-items {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #ffffff;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.column {
+    flex: 1;
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+}
+
+.fig_plate {
+    display: flex;
+    flex: 0 0 48%;
+    max-width: 100%;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+}
+
+.title {
+    text-align: left;
+    font-size: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background-color: hsl(207, 40%, 50%);
+    padding: 10px;
+}
+
+#dashboard-content {
+    width: 95%;
+    margin: auto;
+}
+
+#kpis, #discount, #top_items {
+    width: 95%;
+}
+
+@media print {
+    header {
+        position: static;
+        background-color: #333;
+        color: white;
+    }
+    
+    header .filters {
+        display: None;
+    }
+
+    .content {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .column {
+        display: block;
+        width: 90%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        page-break-inside: auto;
+        background-color: white;
+    }
+
+    .row {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        background-color: white;
+        page-break-inside: auto;
+    }
+
+    .fig_plate {
+        display: block;
+        margin: auto;
+        width: 100%;
+        max-width: 100%;
+        background-color: white;
+        box-sizing: border-box;
+        page-break-inside: avoid;
+    }
+
+    #kpis {
+        width: 100%;
+        display: inline-block;
+        margin: 0;
+        vertical-align: top;
+        text-align: left;
+    }
+
+    #discount, #top_items {
+        width: 100%;
+        display: block;
+        margin: 0;
+        text-align: left;
+    }
+
+    @page {
+        orientation: auto;
+        margin: 10mm;
+    }
+}
